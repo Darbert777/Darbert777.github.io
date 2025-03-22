@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas 🌼</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            text-align: center;
+            font-family: 'Quicksand', Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+            background-color: #fdf4dc;
+        }
+        
+        /* Nuevo fondo creativo con formas geométricas y patrón */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(200, 234, 112, 0.4) 0%, rgba(255, 234, 112, 0) 20%),
+                radial-gradient(circle at 90% 80%, rgba(200, 196, 0, 0.3) 0%, rgba(255, 196, 0, 0) 25%),
+                radial-gradient(circle at 60% 40%, rgba(200, 242, 173, 0.4) 0%, rgba(255, 242, 173, 0) 30%),
+                repeating-linear-gradient(45deg, rgba(200, 217, 102, 0.05) 0px, rgba(255, 217, 102, 0.05) 10px, rgba(255, 217, 102, 0) 10px, rgba(255, 217, 102, 0) 20px);
+            z-index: -2;
+        }
+        
+        /* Elementos decorativos flotantes */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.4;
+            border-radius: 50%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(255,235,59,0.8) 0%, rgba(255,235,59,0) 70%);
+            filter: blur(3px);
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0%) translateX(0%) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-10%) translateX(5%) rotate(120deg);
+            }
+            66% {
+                transform: translateY(5%) translateX(-5%) rotate(240deg);
+            }
+            100% {
+                transform: translateY(0%) translateX(0%) rotate(360deg);
+            }
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: transform 0.5s ease;
+            animation: floatContainer 3s ease-in-out infinite alternate;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        @keyframes floatContainer {
+            0% {transform: translate(-50%, -50%) translateY(0px);}
+            100% {transform: translate(-50%, -50%) translateY(-10px);}
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f9a825;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "🌼";
+            position: absolute;
+            font-size: 1.8rem;
+            right: -40px;
+            top: 0;
+            animation: flowerBounce 2s ease infinite;
+        }
+        
+        @keyframes flowerBounce {
+            0%, 100% {transform: translateY(0) rotate(0deg);}
+            50% {transform: translateY(-8px) rotate(15deg);}
+        }
+        
+        .contenedor {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .flor-wrapper {
+            perspective: 1000px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 50px;
+        }
+        
+.flor {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+    z-index: 1; /* Añadido explícitamente z-index: 1 */
+}
+        
+        .flor:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+.tallo {
+    position: relative;
+    width: 8px;
+    height: 80px;
+    background: linear-gradient(to bottom, #66bb6a, #2e7d32);
+    left: 50%;
+    top: -5%;
+    transform: translateX(-50%);
+    z-index: -1; /* Cambiado de z-index: 1 a z-index: -1 */
+    border-radius: 4px;
+}
+        
+        .hoja {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: linear-gradient(to right, #66bb6a, #2e7d32);
+            border-radius: 50% 50% 50% 0;
+            right: -20px;
+            top: 35px;
+            transform: rotate(-30deg);
+        }
+        
+        .flor .center {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ffca28, #f57f17);
+            border-radius: 50%;
+            z-index: 3;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #5d4037;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ffee58, #fdd835);
+            border-radius: 50% 50% 0 50%;
+            z-index: 2;
+            transform-origin: bottom right;
+            animation: petalSway 3s ease-in-out infinite alternate;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes petalSway {
+            0%, 100% {transform: rotate(0deg);}
+            50% {transform: rotate(5deg);}
+        }
+        
+        .p1 {top: 0; left: 30px; transform: rotate(45deg);}
+        .p2 {top: 10px; right: 5px; transform: rotate(135deg);}
+        .p3 {bottom: 10px; right: 5px; transform: rotate(225deg);}
+        .p4 {bottom: 0; left: 30px; transform: rotate(315deg);}
+        .p5 {top: 10px; left: 5px; transform: rotate(-45deg);}
+        .p6 {bottom: 10px; left: 5px; transform: rotate(-135deg);}
+        .p7 {top: 30px; left: 0; transform: rotate(0deg);}
+        .p8 {top: 30px; right: 0; transform: rotate(180deg);}
+        
+        #mensaje-container {
+            position: relative;
+            margin-top: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #mensaje {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5d4037;
+            background: rgba(255, 235, 59, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(20px) scale(0.9);
+            position: relative;
+            border: 2px dashed rgba(249, 168, 37, 0.3);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+        
+        #mensaje.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: mensajeDestello 0.8s ease-out;
+        }
+        
+        @keyframes mensajeDestello {
+            0% { box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+            100% { box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+        }
+        
+        #mensaje::before, #mensaje::after {
+            content: "✨";
+            position: absolute;
+            font-size: 1.2rem;
+            animation: brilloEstrella 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes brilloEstrella {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        #mensaje::before {
+            top: 10px;
+            left: 15px;
+            animation-delay: 0.3s;
+        }
+        
+        #mensaje::after {
+            bottom: 10px;
+            right: 15px;
+            animation-delay: 0s;
+        }
+        
+        .emoji-separado {
+            display: inline-block;
+            margin-left: 5px;
+            animation: rotateEmoji 3s ease infinite;
+        }
+        
+        @keyframes rotateEmoji {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .nombre {
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .nombre::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #ffca28, transparent);
+            bottom: -3px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom left;
+            transition: transform 0.5s ease;
+            animation: subrayado 1.5s ease-in-out forwards;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes subrayado {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
+        }
+        
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #7e57c2;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .contenedor {
+                gap: 30px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .flor {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .flor .center {
+                width: 50px;
+                height: 50px;
+                left: 20px;
+                top: 20px;
+                font-size: 24px;
+            }
+            
+            #mensaje {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .contenedor {
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .flor {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .flor .center {
+                width: 45px;
+                height: 45px;
+                left: 17.5px;
+                top: 17.5px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elementos decorativos para el fondo -->
+    <div class="bg-elements">
+        <div class="floating-element" style="width: 200px; height: 200px; top: 15%; left: 10%; animation-duration: 25s; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-duration: 18s; animation-delay: 2s;"></div>
+        <div class="floating-element" style="width: 120px; height: 120px; top: 25%; left: 65%; animation-duration: 22s; animation-delay: 5s;"></div>
+        <div class="floating-element" style="width: 180px; height: 180px; top: 75%; left: 20%; animation-duration: 20s; animation-delay: 8s;"></div>
+        <div class="floating-element" style="width: 100px; height: 100px; top: 45%; left: 40%; animation-duration: 15s; animation-delay: 3s;"></div>
+    </div>
+    
+    <div class="container">
+        <h1>Elige tu Flor Amarilla</h1>
+        
+        <div class="contenedor">
+            <div class="flor-wrapper">
+                <div class="flor" onclick="mostrarMensaje('G')">
+                    <div class="center">G</div>
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="petal p6"></div>
+                    <div class="petal p7"></div>
+                    <div class="petal p8"></div>
+                </div>
+                <div class="tallo"></div>
+                <div class="hoja"></div>
+            </div>
+            
+            <div class="flor-wrapper">
+                <div class="flor" onclick="mostrarMensaje('C')">
+                    <div class="center">C</div>
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="petal p6"></div>
+                    <div class="petal p7"></div>
+                    <div class="petal p8"></div>
+                </div>
+                <div class="tallo"></div>
+                <div class="hoja"></div>
+            </div>
+            
+            <div class="flor-wrapper">
+                <div class="flor" onclick="mostrarMensaje('N')">
+                    <div class="center">N</div>
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="petal p6"></div>
+                    <div class="petal p7"></div>
+                    <div class="petal p8"></div>
+                </div>
+                <div class="tallo"></div>
+                <div class="hoja"></div>
+            </div>
+        </div>
+        
+        <div id="mensaje-container">
+            <div id="mensaje"></div>
+        </div>
+        
+        <div class="footer">Hecho por Darbi💛 </div>
+    </div>
+
+    <script>
+        // Variable para guardar la flor actualmente seleccionada
+        let florActiva = null;
+        let mensajeVisible = false;
+        
+        function mostrarMensaje(inicial) {
+            // Si se hace clic en la misma flor que ya está activa, no hacer nada
+            if (florActiva === inicial && mensajeVisible) {
+                ocultarMensaje();
+                return;
+            }
+            
+            // Guardar los mensajes según la inicial
+            let mensajes = {
+                'G': '<span class="nombre">Georgina</span>, hay personas que iluminan los días sin siquiera intentarlo. Gracias por ser alguien tan especial y única. 💛',
+                'C': '<span class="nombre">Cristal</span>, tu amistad es un regalo. Siempre estás ahí para escuchar y comprender, y eso vale más de lo que imaginas. <span class="emoji-separado">🌟</span>',
+                'N': '<span class="nombre">Noelia</span>, a veces nos matamos de risa y otras discutimos, pero quiero que sepas que valoro mucho nuestra amistad. 💛'
+            };
+            
+            // Si ya hay un mensaje visible, ocultarlo primero
+            if (mensajeVisible) {
+                ocultarMensaje();
+                
+                // Usar setTimeout para esperar a que termine la animación de ocultamiento
+                setTimeout(() => {
+                    actualizarMensaje(inicial, mensajes[inicial]);
+                }, 300);
+            } else {
+                actualizarMensaje(inicial, mensajes[inicial]);
+            }
+        }
+        
+        function ocultarMensaje() {
+            let mensajeElemento = document.getElementById('mensaje');
+            mensajeElemento.classList.remove('visible');
+            
+            // Restablecer estilo de todas las flores
+            let flores = document.querySelectorAll('.flor');
+            flores.forEach(flor => {
+                flor.style.transform = '';
+            });
+            
+            florActiva = null;
+            mensajeVisible = false;
+        }
+        
+        function actualizarMensaje(inicial, contenido) {
+            // Actualizar el mensaje
+            let mensajeElemento = document.getElementById('mensaje');
+            mensajeElemento.innerHTML = contenido;
+            
+            // Añadir efecto a la flor seleccionada
+            let flores = document.querySelectorAll('.flor');
+            flores.forEach(flor => {
+                if (flor.querySelector('.center').innerText === inicial) {
+                    flor.style.transform = 'scale(1.15) rotate(10deg)';
+                    setTimeout(() => {
+                        flor.style.transform = 'scale(1.05) rotate(5deg)';
+                    }, 300);
+                } else {
+                    flor.style.transform = 'scale(0.95)';
+                }
+            });
+            
+            // Mostrar el mensaje con animación
+            setTimeout(() => {
+                mensajeElemento.classList.add('visible');
+                crearPartículas();
+            }, 100);
+            
+            // Actualizar la flor activa
+            florActiva = inicial;
+            mensajeVisible = true;
+        }
+        
+        function crearPartículas() {
+            const mensajeContainer = document.getElementById('mensaje-container');
+            
+            // Crear 15 partículas
+            for (let i = 0; i < 15; i++) {
+                const particula = document.createElement('div');
+                particula.className = 'particula';
+                
+                // Estilo para las partículas
+                particula.style.position = 'absolute';
+                particula.style.width = Math.random() * 10 + 5 + 'px';
+                particula.style.height = particula.style.width;
+                particula.style.background = `rgba(255, ${Math.floor(Math.random() * 100) + 155}, 0, ${Math.random() * 0.5 + 0.5})`;
+                particula.style.borderRadius = '50%';
+                particula.style.pointerEvents = 'none';
+                
+                // Posición inicial
+                const leftPos = 50 + (Math.random() * 70 - 35) + '%';
+                particula.style.left = leftPos;
+                particula.style.top = '50%';
+                
+                // Añadir al contenedor
+                mensajeContainer.appendChild(particula);
+                
+                // Animación
+                const animDuration = Math.random() * 2 + 2;
+                const animDelay = Math.random() * 0.5;
+                
+                particula.style.animation = `particleRise ${animDuration}s ease-out ${animDelay}s forwards`;
+                
+                // Crear el keyframe para la animación
+                if (!document.querySelector('#particleAnimation')) {
+                    const style = document.createElement('style');
+                    style.id = 'particleAnimation';
+                    style.innerHTML = `
+                        @keyframes particleRise {
+                            0% {
+                                transform: translate(0, 0) scale(1);
+                                opacity: 1;
+                            }
+                            100% {
+                                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * -150 - 50}px) scale(0);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                // Eliminar partícula después de la animación
+                setTimeout(() => {
+                    if (particula.parentNode) {
+                        particula.parentNode.removeChild(particula);
+                    }
+                }, (animDuration + animDelay) * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
